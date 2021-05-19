@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:frosh_link_task_1/providers/model.dart';
 import 'package:frosh_link_task_1/screens/home.dart';
+import 'package:frosh_link_task_1/screens/model_detailed_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (ctx) => Models(),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -13,7 +19,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Home(),
+      initialRoute: Home.routeName,
+      routes: {
+        Home.routeName: (ctx) => Home(),
+        ModelDetailedScreen.routeName: (ctx) => ModelDetailedScreen()
+      },
+      debugShowCheckedModeBanner: false,
     );
   }
 }
