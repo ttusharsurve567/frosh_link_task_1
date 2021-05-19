@@ -13,14 +13,22 @@ class ModelItem extends StatelessWidget {
         child: Container(
           alignment: Alignment.bottomCenter,
           decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withAlpha(60),
+                  blurRadius: 5.0,
+                  spreadRadius: 3.0,
+                )
+              ],
               image: DecorationImage(
-                  image: NetworkImage(model.url), fit: BoxFit.cover)),
+                  image: NetworkImage(model.thumbnailUrl), fit: BoxFit.cover)),
           child: Container(
             color: Colors.black54,
             child: Text(
               model.title,
               softWrap: true,
-              overflow: TextOverflow.fade,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Colors.white60,
