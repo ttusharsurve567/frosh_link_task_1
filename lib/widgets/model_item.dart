@@ -6,36 +6,36 @@ import 'package:provider/provider.dart';
 class ModelItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final model = Provider.of<Model>(context, listen: false);
+    final model = Provider.of<Model>(context);
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GestureDetector(
-        child: Container(
+        child: Stack(
           alignment: Alignment.bottomCenter,
-          decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withAlpha(60),
-                  blurRadius: 5.0,
-                  spreadRadius: 3.0,
-                )
-              ],
-              image: DecorationImage(
-                  image: NetworkImage(model.thumbnailUrl), fit: BoxFit.cover)),
-          child: Container(
-            color: Colors.black54,
-            child: Text(
-              model.title,
-              softWrap: true,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.white60,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400),
+          children: [
+            Positioned.fill(
+                child: Hero(
+              tag: model.id.toString(),
+              child: Image.network(
+                model.thumbnailUrl,
+                fit: BoxFit.cover,
+              ),
+            )),
+            Container(
+              color: Colors.black54,
+              child: Text(
+                model.title,
+                softWrap: true,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.white60,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400),
+              ),
             ),
-          ),
+          ],
         ),
         onTap: () {
           Navigator.of(context)

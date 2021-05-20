@@ -20,25 +20,41 @@ class ModelDetailedScreen extends StatelessWidget {
           style: TextStyle(color: Colors.black),
         ),
       ),
-      body: Center(
-        child: Column(
+      body: SingleChildScrollView(
+        child: Center(
+            child: Column(
           children: [
-            Container(
-              height: MediaQuery.of(context).size.height * 0.8826,
-              child: PhotoView(
-                backgroundDecoration: BoxDecoration(
-                    color: Colors.white,
-                    gradient: LinearGradient(
-                        colors: [Colors.white, Colors.black54],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter)),
-                imageProvider: NetworkImage(
-                  loadedModel.url,
-                ),
-              ),
+            Hero(
+                tag: modelId.toString(), child: Image.network(loadedModel.url)),
+            SizedBox(
+              height: 10,
             ),
+            Text(
+              loadedModel.title,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 18),
+            )
           ],
-        ),
+        )
+            // Column(
+            //   children: [
+            //     Container(
+            //       height: MediaQuery.of(context).size.height * 0.8826,
+            //       child: PhotoView(
+            //         backgroundDecoration: BoxDecoration(
+            //             color: Colors.white,
+            //             gradient: LinearGradient(
+            //                 colors: [Colors.white, Colors.black54],
+            //                 begin: Alignment.topCenter,
+            //                 end: Alignment.bottomCenter)),
+            //         imageProvider: NetworkImage(
+            //           loadedModel.url,
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            ),
       ),
     );
   }
