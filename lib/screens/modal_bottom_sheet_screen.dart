@@ -74,7 +74,6 @@ class _ModalBottomSheetScreenState extends State<ModalBottomSheetScreen> {
               width: double.infinity,
               child: FlatButton(
                   onPressed: () {
-                    print(_filterType);
                     Provider.of<Models>(context, listen: false)
                         .filter(_filterType);
                     Navigator.of(context).pop();
